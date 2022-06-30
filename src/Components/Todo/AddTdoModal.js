@@ -1,27 +1,71 @@
-import React from "react";
+import { format } from "date-fns";
+import React, { useState } from "react";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
 
 const AddTdoModal = () => {
+  const [selected, setSelected] = useState(new Date());
+  const editTdoList = (e) => {
+    e.preventDefault();
+    const edit = e.target.title.value;
+    console.log(edit);
+  };
   return (
-    <div>
-      <label for="my-modal-6" class="btn modal-button my-5">
-        Add List
-      </label>
-
-      <input type="checkbox" id="my-modal-6" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-          <h3 class="font-bold text-lg">
-            Congratulations random Internet user!
-          </h3>
-          <p class="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
-          </p>
-          <div class="modal-action">
-            <label for="my-modal-6" class="btn">
-              Yay!
-            </label>
+    <div className="flex justify-center items-center gap-14 my-10">
+      <div>
+        <div className="">
+          <div className=" ">
+            <DayPicker
+              mode="single"
+              selected={selected}
+              onSelect={setSelected}
+            />
           </div>
+          <h1>You have selected: {format(selected, "PP")}</h1>
+        </div>
+      </div>
+      <a href="#my-modal-2" class="btn my-5">
+        add todo list
+      </a>
+
+      <div class="modal" id="my-modal-2">
+        <div class="modal-box">
+          <label for="my-modal-2" class=" absolute right-2 top-2">
+            <a href="#" class=" btn btn-sm btn-circle">
+              x
+            </a>
+          </label>
+
+          <h3 class="font-bold text-lg">Select Your schedule</h3>
+          <form
+            onSubmit={editTdoList}
+            action=""
+            className="grid grid-cols-1 gap-3 justify-items-center "
+          >
+            <input
+              name="title"
+              type="text"
+              placeholder="title"
+              class="input input-bordered w-full max-w-xs"
+            />
+            <input
+              name="date"
+              type="text"
+              value={`${format(selected, "PP")}`}
+              class="input input-bordered w-full max-w-xs"
+            />
+            <input
+              name="place"
+              type="text"
+              placeholder={`Place`}
+              class="input input-bordered w-full max-w-xs"
+            />
+            <input
+              type="submit"
+              value="submit"
+              className=" btn btn-success w-full max-w-xs"
+            />
+          </form>
         </div>
       </div>
     </div>

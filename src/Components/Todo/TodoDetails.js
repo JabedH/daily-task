@@ -4,7 +4,7 @@ const TodoDetails = ({ list, setEdit }) => {
   return (
     <tr>
       <td>{list.title}</td>
-      <td>{list.time}</td>
+      <td>{list.date}</td>
       <td>{list.place}</td>
       <td>
         <label
