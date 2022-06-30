@@ -1,71 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import AddTdoModal from "./AddTdoModal";
+import MyModal from "./MyModal";
+import TodoDetails from "./TodoDetails";
 
 const ToDo = () => {
+  const [todo, setTodo] = useState([]);
+  useEffect(() => {
+    fetch("todolist.json")
+      .then((res) => res.json())
+      .then((data) => setTodo(data));
+  });
+  const [todoEdit, setEdit] = useState([]);
   return (
-    <div className=" ">
-      <div>
-        <label for="my-modal-3" class="btn modal-button w-40 my-10">
-          Add List
-        </label>
+    <div className="">
+      <AddTdoModal />
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Time</th>
+              <th>Place</th>
+              <th>Edit info</th>
+            </tr>
+          </thead>
+          <tbody>
+            {todo.map((list) => (
+              <TodoDetails list={list} setEdit={setEdit} />
+            ))}
 
-        <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-        <div class="modal">
-          <div class="modal-box relative">
-            <label
-              for="my-modal-3"
-              class="btn btn-sm btn-circle absolute right-2 top-2"
-            >
-              ✕
-            </label>
-            <h3 class="text-lg font-bold">
-              Congratulations random Internet user!
-            </h3>
-            <p class="py-4">
-              You've been selected for a chance to get one year of subscription
-              to use Wikipedia for free!
-            </p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="overflow-x-auto">
-          <table class="table w-full">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Title</th>
-                <th>Time</th>
-                <th>Place</th>
-                <th>Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-                <td>
-                  <button>Edit</button>
-                </td>
-              </tr>
-
-              <tr>
-                <th>2</th>
-                <td>Hart Hagerty</td>
-                <td>Desktop Support Technician</td>
-                <td>Purple</td>
-              </tr>
-
-              <tr>
-                <th>3</th>
-                <td>Brice Swyre</td>
-                <td>Tax Accountant</td>
-                <td>Red</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            {<MyModal todoEdit={todoEdit}></MyModal>}
+          </tbody>
+        </table>
       </div>
     </div>
   );
