@@ -18,7 +18,7 @@ const MyModal = ({ todoEdit }) => {
             >
               ✕
             </label>
-            <h3 class="font-bold text-lg">Editing: "{todoEdit?.title}" list</h3>
+            <h3 class="font-bold text-lg">Editing: "{todoEdit.title}" list</h3>
             <form
               onSubmit={editTdoList}
               action=""

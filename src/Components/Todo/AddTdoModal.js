@@ -2,13 +2,31 @@ import { format } from "date-fns";
 import React, { useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
+import { toast } from "react-toastify";
 
 const AddTdoModal = () => {
   const [selected, setSelected] = useState(new Date());
   const editTdoList = (e) => {
     e.preventDefault();
-    const edit = e.target.title.value;
-    console.log(edit);
+    const title = e.target.title.value;
+    const date = e.target.date.value;
+    const place = e.target.place.value;
+    const addList = {
+      title,
+      date,
+      place,
+    };
+    fetch("http://localhost:5000/addlist", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addList),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
   return (
     <div className="flex justify-center items-center gap-14 my-10">

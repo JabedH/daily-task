@@ -9,7 +9,8 @@ import Calendar from "./Components/Calendar/Calendar";
 import Login from "./Components/Login/Login";
 import SignUp from "./Components/Login/Signup";
 import Footer from "./Components/navbar/Footer";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <div className="App ">
@@ -23,6 +24,7 @@ function App() {
         <Route path="signup" element={<SignUp />} />
       </Routes>
       <Footer />
+      <ToastContainer />
     </div>
   );
 }
