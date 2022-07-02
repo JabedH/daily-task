@@ -11,15 +11,32 @@ import SignUp from "./Components/Login/Signup";
 import Footer from "./Components/navbar/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RequireAuth from "./Components/RequireAuth/RequireAuth";
 function App() {
   return (
     <div className="App ">
       <Header />
       <Routes>
         <Route path="*" element={<Home />} />
-        <Route path="completetask" element={<CompleteTask />}></Route>
-        <Route path="todo" element={<ToDo />} />
-        <Route path="calender" element={<Calendar />} />
+        <Route
+          path="completetask"
+          element={
+            <RequireAuth>
+              {" "}
+              <CompleteTask />{" "}
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="todo"
+          element={
+            <RequireAuth>
+              {" "}
+              <ToDo />{" "}
+            </RequireAuth>
+          }
+        />
+        <Route path="calender" element={<Calendar />}></Route>
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
       </Routes>

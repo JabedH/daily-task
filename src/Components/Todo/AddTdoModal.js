@@ -29,22 +29,26 @@ const AddTdoModal = () => {
       });
   };
   return (
-    <div className="flex justify-center items-center gap-14 my-10">
-      <div>
-        <div className="">
-          <div className=" ">
-            <DayPicker
-              mode="single"
-              selected={selected}
-              onSelect={setSelected}
-            />
+    <div className="flex justify-center items-center  gap-14 my-10">
+      <div className="grid sm:grid-cols-1 lg:grid-cols-2  items-center ">
+        <div>
+          <div className="">
+            <div className=" ">
+              <DayPicker
+                mode="single"
+                selected={selected}
+                onSelect={setSelected}
+              />
+            </div>
+            <h1>You have selected: {format(selected, "PP")}</h1>
           </div>
-          <h1>You have selected: {format(selected, "PP")}</h1>
+        </div>
+        <div>
+          <a href="#my-modal-2" class="btn my-5 w-40   ">
+            add todo list
+          </a>
         </div>
       </div>
-      <a href="#my-modal-2" class="btn my-5">
-        add todo list
-      </a>
 
       <div class="modal" id="my-modal-2">
         <div class="modal-box">
@@ -65,18 +69,22 @@ const AddTdoModal = () => {
               type="text"
               placeholder="title"
               class="input input-bordered w-full max-w-xs"
+              required
             />
             <input
               name="date"
               type="text"
               value={`${format(selected, "PP")}`}
               class="input input-bordered w-full max-w-xs"
+              required
+              
             />
             <input
               name="place"
               type="text"
               placeholder={`Place`}
               class="input input-bordered w-full max-w-xs"
+              required
             />
             <input
               type="submit"

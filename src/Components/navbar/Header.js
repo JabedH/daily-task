@@ -34,15 +34,15 @@ const Header = () => {
               tabindex="0"
               class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <a>Home</a>
-              </li>
-              <li>
-                <a>Inventory</a>
+              <li className="px-2 gap-4">
+                <Link to="/">Home</Link>
+                <Link to="/completetask">Completed Tasks</Link>
+                <Link to="/todo">To-Do</Link>
+                <Link to="/calender">Calendar</Link>
               </li>
             </ul>
           </div>
-          <a class="btn btn-ghost normal-case text-xl">
+          <a class="btn btn-ghost normal-case text-2xl font-bold">
             <Link to="/">Daily Task</Link>
           </a>
         </div>

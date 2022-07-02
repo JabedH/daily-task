@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "../Calendar/Calendar";
+import Loading from "../Loading/Loading";
 import AddTdoModal from "./AddTdoModal";
 import MyModal from "./MyModal";
 import TodoDetails from "./TodoDetails";
@@ -10,17 +11,20 @@ const ToDo = () => {
     fetch("https://quiet-mountain-32735.herokuapp.com/addlist")
       .then((res) => res.json())
       .then((data) => setTodo(data));
-  });
+  }, []);
+
   const [todoEdit, setEdit] = useState([]);
+
   return (
     <div className="">
       <div className="flex justify-center items-center">
-        <AddTdoModal />
+        <AddTdoModal todo={todo} setTodo={setTodo} />
       </div>
       <div class="overflow-x-auto">
         <table class="table w-full">
           <thead>
             <tr>
+              <th></th>
               <th>Title</th>
               <th>Date</th>
               <th>Place</th>
@@ -29,10 +33,22 @@ const ToDo = () => {
           </thead>
           <tbody>
             {todo.map((list) => (
-              <TodoDetails key={list._id} list={list} setEdit={setEdit} />
+              <TodoDetails
+                setTodo={setTodo}
+                todo={todo}
+                key={list._id}
+                list={list}
+                setEdit={setEdit}
+              />
             ))}
 
-            {<MyModal todoEdit={todoEdit}></MyModal>}
+            {
+              <MyModal
+                todo={todo}
+                setTodo={setTodo}
+                todoEdit={todoEdit}
+              ></MyModal>
+            }
           </tbody>
         </table>
       </div>

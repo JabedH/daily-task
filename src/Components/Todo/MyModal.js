@@ -1,10 +1,32 @@
 import React from "react";
 
 const MyModal = ({ todoEdit }) => {
-  const editTdoList = (e) => {
+  const id = todoEdit?._id;
+  const editTodoList = (e) => {
     e.preventDefault();
-    const edit = e.target.title.value;
-    console.log(edit);
+    const title = e.target.title.value;
+    const date = e.target.date.value;
+    const place = e.target.place.value;
+    const updateList = {
+      title,
+      date,
+      place,
+    };
+    fetch(`https://quiet-mountain-32735.herokuapp.com/addlist/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateList),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, data.matchedCount);
+        // if (data.matchedCount > 0) {
+        //   let remaining = todo.filter((list) => list._id !== list._id);
+        //   setTodo(remaining);
+        // }
+      });
   };
   return (
     <div>
@@ -20,7 +42,7 @@ const MyModal = ({ todoEdit }) => {
             </label>
             <h3 class="font-bold text-lg">Editing: "{todoEdit.title}" list</h3>
             <form
-              onSubmit={editTdoList}
+              onSubmit={editTodoList}
               action=""
               className="grid grid-cols-1 gap-3 justify-items-center "
             >
@@ -35,7 +57,7 @@ const MyModal = ({ todoEdit }) => {
                 type="text"
                 placeholder={`Date: ${todoEdit?.date}`}
                 class="input input-bordered w-full max-w-xs"
-              />
+               />
               <input
                 name="place"
                 type="text"
