@@ -7,7 +7,7 @@ import TodoDetails from "./TodoDetails";
 const ToDo = () => {
   const [todo, setTodo] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/addlist")
+    fetch("https://quiet-mountain-32735.herokuapp.com/addlist")
       .then((res) => res.json())
       .then((data) => setTodo(data));
   });

@@ -16,7 +16,7 @@ const AddTdoModal = () => {
       date,
       place,
     };
-    fetch("http://localhost:5000/addlist", {
+    fetch("https://quiet-mountain-32735.herokuapp.com/addlist", {
       method: "POST",
       headers: {
         "content-type": "application/json",
