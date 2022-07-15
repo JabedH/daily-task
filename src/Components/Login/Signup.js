@@ -20,50 +20,54 @@ const SignUp = () => {
     navigate(from, { replace: true });
   }
   return (
-    <div className=" ">
-      <div class=" hero min-h-screen bg-base-200 ">
-        <div class="hero-content flex-col lg:flex-row-reverse ">
-          <div class="card flex-shrink-0 w-96 p-3  max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleSiGnup} action="">
-              <div class="form-control ">
-                <h3 className="text-2xl">Sign Up</h3>
-                <label class="label">
-                  <span class="label-text">Name</span>
-                </label>
-                <input
-                  name="name"
-                  type="text"
-                  placeholder="name"
-                  class="input input-bordered mb-3"
-                />
-                <label class="label">
-                  <span class="label-text">Email</span>
-                </label>
-                <input
-                  name="email"
-                  type="email"
-                  placeholder="email"
-                  class="input input-bordered mb-3"
-                />
-                <label class="label">
-                  <span class="label-text">Password</span>
-                </label>
-                <input
-                  name="password"
-                  type="password"
-                  placeholder="password"
-                  class="input input-bordered"
-                />
-                <label class="label">
-                  <a href="#" class="label-text-alt link link-hover">
-                    <Link to="/login">Already have an Account?</Link>
-                  </a>
-                </label>
+    <div className="h-screen">
+      <div className="m-5 my-10 ">
+        <div className="flex justify-center items-center ">
+          <div className=" w-96 lg:flex-row-reverse">
+            <div className="card flex-shrink-0 shadow-2xl bg-base-100 ">
+              <div className="card-body">
+                <form onSubmit={handleSiGnup} action="">
+                  <div className="form-control ">
+                    <h3 className="text-2xl">Sign Up</h3>
+                    <label className="label">
+                      <span className="label-text">Name</span>
+                    </label>
+                    <input
+                      name="name"
+                      type="text"
+                      placeholder="name"
+                      className="input input-bordered mb-3"
+                    />
+                    <label className="label">
+                      <span className="label-text">Email</span>
+                    </label>
+                    <input
+                      name="email"
+                      type="email"
+                      placeholder="email"
+                      className="input input-bordered mb-3"
+                    />
+                    <label className="label">
+                      <span className="label-text">Password</span>
+                    </label>
+                    <input
+                      name="password"
+                      type="password"
+                      placeholder="password"
+                      className="input input-bordered"
+                    />
+                    <label className="label">
+                      <a href="#" className="label-text-alt link link-hover">
+                        <Link to="/login">Already have an Account?</Link>
+                      </a>
+                    </label>
+                  </div>
+                  <div className="form-control mt-6">
+                    <button className="btn btn-primary">Login</button>
+                  </div>
+                </form>
               </div>
-              <div class="form-control mt-6">
-                <button class="btn btn-primary">Login</button>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>

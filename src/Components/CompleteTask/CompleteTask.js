@@ -1,23 +1,26 @@
 import { toBeEmpty } from "@testing-library/jest-dom/dist/matchers";
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 import CompleteTaskDetails from "./CompleteTaskDetails";
 
 const CompleteTask = () => {
-
+  const [user] = useAuthState(auth);
+  const email = user.email;
   const [complete, setComplete] = useState([]);
   useEffect(() => {
-    fetch("https://quiet-mountain-32735.herokuapp.com/complete")
+    fetch(`https://morning-brook-30971.herokuapp.com/complete?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
-        setComplete(data)
+        setComplete(data);
       });
   }, []);
   return (
     <div className=" drawer ">
-      <div class="overflow-x-auto">
+      <div className="overflow-x-auto">
         <h1 className=" font-bold my-5">My Todo List</h1>
-        <table class="table w-full">
+        <table className="table w-full">
           <thead>
             <tr>
               <th>Title</th>

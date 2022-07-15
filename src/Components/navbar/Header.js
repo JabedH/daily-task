@@ -11,13 +11,13 @@ const Header = () => {
   };
   return (
     <div>
-      <div class="navbar bg-base-100">
-        <div class="navbar-start">
-          <div class="dropdown">
-            <label tabindex="0" class="btn btn-ghost lg:hidden">
+      <div className="navbar bg-base-100">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <label tabindex="0" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
+                className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -32,7 +32,7 @@ const Header = () => {
             </label>
             <ul
               tabindex="0"
-              class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li className="px-2 gap-4">
                 <Link to="/">Home</Link>
@@ -42,13 +42,13 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <a class="btn btn-ghost normal-case text-2xl font-bold">
+          <a className="btn btn-ghost normal-case text-2xl font-bold">
             <Link to="/">Daily Task</Link>
           </a>
         </div>
         <div className="navbar-end">
-          <div class="  hidden lg:flex">
-            <ul class="menu menu-horizontal ">
+          <div className="  hidden lg:flex">
+            <ul className="menu menu-horizontal ">
               <li className="px-2 gap-4">
                 <Link to="/">Home</Link>
                 <Link to="/completetask">Completed Tasks</Link>
@@ -57,8 +57,8 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <div class=" px-2">
-            <a class="btn">
+          <div className=" px-2">
+            <a className="btn">
               {user ? (
                 <Link onClick={() => HandleLogout()} to="/login">
                   Logout

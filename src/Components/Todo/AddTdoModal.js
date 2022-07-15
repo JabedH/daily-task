@@ -1,33 +1,18 @@
 import { format } from "date-fns";
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
+import auth from "../../firebase.init";
+import AddList from "./AddList";
 
-const AddTdoModal = () => {
+const AddTdoModal = ({ todo, setTodo }) => {
+  const [user] = useAuthState(auth);
+  console.log(user.email);
   const [selected, setSelected] = useState(new Date());
-  const editTdoList = (e) => {
-    e.preventDefault();
-    const title = e.target.title.value;
-    const date = e.target.date.value;
-    const place = e.target.place.value;
-    const addList = {
-      title,
-      date,
-      place,
-    };
-    fetch("https://quiet-mountain-32735.herokuapp.com/addlist", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addList),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  };
+  const [clear, setClear] = useState(null);
+
   return (
     <div className="flex justify-center items-center  gap-14 my-10">
       <div className="grid sm:grid-cols-1 lg:grid-cols-2  items-center ">
@@ -44,56 +29,18 @@ const AddTdoModal = () => {
           </div>
         </div>
         <div>
-          <a href="#my-modal-2" class="btn my-5 w-40   ">
+          <a
+            onClick={() => setClear(todo)}
+            href="#my-modal-2"
+            className="btn my-5 w-40   "
+          >
             add todo list
           </a>
         </div>
       </div>
-
-      <div class="modal" id="my-modal-2">
-        <div class="modal-box">
-          <label for="my-modal-2" class=" absolute right-2 top-2">
-            <a href="#" class=" btn btn-sm btn-circle">
-              x
-            </a>
-          </label>
-
-          <h3 class="font-bold text-lg">Select Your schedule</h3>
-          <form
-            onSubmit={editTdoList}
-            action=""
-            className="grid grid-cols-1 gap-3 justify-items-center "
-          >
-            <input
-              name="title"
-              type="text"
-              placeholder="title"
-              class="input input-bordered w-full max-w-xs"
-              required
-            />
-            <input
-              name="date"
-              type="text"
-              value={`${format(selected, "PP")}`}
-              class="input input-bordered w-full max-w-xs"
-              required
-              
-            />
-            <input
-              name="place"
-              type="text"
-              placeholder={`Place`}
-              class="input input-bordered w-full max-w-xs"
-              required
-            />
-            <input
-              type="submit"
-              value="submit"
-              className=" btn btn-success w-full max-w-xs"
-            />
-          </form>
-        </div>
-      </div>
+      {clear && (
+        <AddList setClear={setClear} selected={selected} setTodo={setTodo} />
+      )}
     </div>
   );
 };

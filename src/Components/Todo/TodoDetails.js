@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../Loading/Loading";
 
-const TodoDetails = ({ todo, list, setEdit, setTodo }) => {
+const TodoDetails = ({ todo, list, setEdit, setTodo, setClear }) => {
   // const [complete, setComplete] = useState([]);
   // console.log(complete);
   const handleDelete = (id) => {
-    const url = `https://quiet-mountain-32735.herokuapp.com/addlist/${id}`;
+    const url = `https://morning-brook-30971.herokuapp.com/addlist/${id}`;
     fetch(url, {
       method: "DELETE",
     })
@@ -19,7 +19,7 @@ const TodoDetails = ({ todo, list, setEdit, setTodo }) => {
       });
   };
   const handlePost = (list) => {
-    fetch("https://quiet-mountain-32735.herokuapp.com/complete", {
+    fetch("https://morning-brook-30971.herokuapp.com/complete", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,15 +42,15 @@ const TodoDetails = ({ todo, list, setEdit, setTodo }) => {
             // setComplete(list);
           }}
           type="checkbox"
-          class="btn"
+          className="btn"
         />
       </td>
       <td>{list.title}</td>
       <td>{list.date}</td>
-      <td>{list.place}</td>
+      {/* <td>{list.place}</td> */}
       <td>
         <label
-          onClick={() => setEdit(list)}
+          onClick={() => [setEdit(list), setClear(list)]}
           for="my-modal-6"
           className="btn btn-warning"
         >

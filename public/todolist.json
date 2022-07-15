@@ -5,33 +5,38 @@
     "date": "jun, 30",
     "place": "dhaka",
     "status": ""
+
   },
   {
     "id": 2,
     "title": "yellow night",
     "date": "jul, 5",
     "place": "Cumilla",
-    "status": ""
+    "status": "",
+    "email": "aatozz99@gmail.com"
   },
   {
     "id": 3,
     "title": "Marriage ceremony",
     "date": "Aug, 5",
     "place": "Khulna",
-    "status": ""
+    "status": "",
+    "email": "aatozz99@gmail.com"
   },
   {
     "id": 4,
     "title": "hangout",
     "date": "jul, 9",
     "place": "chittagong",
-    "status": ""
+    "status": "",
+    "email": "aatozz99@gmail.com"
   },
   {
     "id": 5,
     "title": "Class",
     "date": "jul, 21",
     "place": "dhaka",
-    "status": ""
+    "status": "",
+    "email": "aatozz99@gmail.com"
   }
 ]
